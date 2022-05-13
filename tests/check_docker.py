@@ -37,3 +37,5 @@ history = model.fit(
   )
 
 model.evaluate(x_test,  y_test, verbose=2)
+
+bbb = 1
