@@ -130,3 +130,11 @@ dmypy.json
 
 # wandb
 wandb
+
+# vs code
+.vscode
+.devcontainer
+
+devcontainer
+vscode
+
