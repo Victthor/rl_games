@@ -1,5 +1,8 @@
 wandb
+tensorflow-probability == 0.16.0
 tf-agents [reverb] == 0.12.0  # 0.12.0 for tf 2.8.0
+autorom
+gym [all, accept-rom-license]
 hydra-core
 optuna
 plotly

@@ -12,6 +12,7 @@ from tf_agents.environments import suite_gym
 from tf_agents.environments import tf_py_environment
 from tf_agents.eval import metric_utils
 from tf_agents.metrics import tf_metrics
+
 from tf_agents.networks import sequential
 from tf_agents.policies import py_tf_eager_policy
 from tf_agents.policies import random_tf_policy
@@ -98,9 +99,7 @@ if __name__ == "__main__":
 
     eval_policy = agent.policy
     collect_policy = agent.collect_policy
-
-    random_policy = random_tf_policy.RandomTFPolicy(train_env.time_step_spec(),
-                                                    train_env.action_spec())
+    random_policy = random_tf_policy.RandomTFPolicy(train_env.time_step_spec(), train_env.action_spec())
 
     def compute_avg_return(environment, policy, num_episodes=10):
 
@@ -120,10 +119,8 @@ if __name__ == "__main__":
         return avg_return.numpy()[0]
 
     table_name = 'uniform_table'
-    replay_buffer_signature = tensor_spec.from_spec(
-        agent.collect_data_spec)
-    replay_buffer_signature = tensor_spec.add_outer_dim(
-        replay_buffer_signature)
+    replay_buffer_signature = tensor_spec.from_spec(agent.collect_data_spec)
+    replay_buffer_signature = tensor_spec.add_outer_dim(replay_buffer_signature)
 
     table = reverb.Table(
         table_name,
@@ -131,7 +128,8 @@ if __name__ == "__main__":
         sampler=reverb.selectors.Uniform(),
         remover=reverb.selectors.Fifo(),
         rate_limiter=reverb.rate_limiters.MinSize(1),
-        signature=replay_buffer_signature)
+        signature=replay_buffer_signature
+    )
 
     reverb_server = reverb.Server([table])
 
@@ -139,24 +137,30 @@ if __name__ == "__main__":
         agent.collect_data_spec,
         table_name=table_name,
         sequence_length=2,
-        local_server=reverb_server)
+        local_server=reverb_server
+    )
 
     rb_observer = reverb_utils.ReverbAddTrajectoryObserver(
         replay_buffer.py_client,
         table_name,
-        sequence_length=2)
+        sequence_length=2
+    )
 
     py_driver.PyDriver(
         env,
-        py_tf_eager_policy.PyTFEagerPolicy(
-        random_policy, use_tf_function=True),
+        py_tf_eager_policy.PyTFEagerPolicy(random_policy, use_tf_function=True),
         [rb_observer],
-        max_steps=cfg.initial_collect_steps).run(train_py_env.reset())
+        max_steps=cfg.initial_collect_steps
+    ).run(train_py_env.reset())
 
     dataset = replay_buffer.as_dataset(
         num_parallel_calls=3,
         sample_batch_size=cfg.batch_size,
         num_steps=2).prefetch(3)
+
+    for element in dataset.as_numpy_iterator():
+        print(element)
+        bbb = 1
 
     iterator = iter(dataset)
 
@@ -176,8 +180,7 @@ if __name__ == "__main__":
     # Create a driver to collect experience.
     collect_driver = py_driver.PyDriver(
         env,
-        py_tf_eager_policy.PyTFEagerPolicy(
-        agent.collect_policy, use_tf_function=True),
+        py_tf_eager_policy.PyTFEagerPolicy(agent.collect_policy, use_tf_function=True),
         [rb_observer],
         max_steps=cfg.collect_steps_per_iteration)
 
@@ -199,3 +202,6 @@ if __name__ == "__main__":
             avg_return = compute_avg_return(eval_env, agent.policy, cfg.num_eval_episodes)
             print('step = {0}: Average Return = {1}'.format(step, avg_return))
             returns.append(avg_return)
+
+
+            
