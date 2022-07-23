@@ -134,7 +134,3 @@ wandb
 # vs code
 .vscode
 .devcontainer
-
-devcontainer
-vscode
-

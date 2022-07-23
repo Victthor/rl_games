@@ -1,0 +1,5 @@
+
+defaults:
+  - agent: dqn_agent_v1
+  - logger: wb_logger_v1
+
