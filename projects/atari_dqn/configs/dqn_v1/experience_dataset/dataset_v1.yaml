@@ -1,0 +1,5 @@
+
+num_parallel_calls: 3
+sample_batch_size: 128
+num_steps: ${experience_replay_buffer.sequence_length}
+prefetch: 3

@@ -1,0 +1,7 @@
+
+_target_: tf_agents.drivers.py_driver.PyDriver
+_partial_: True
+# env,
+# py_tf_eager_policy.PyTFEagerPolicy(random_policy, use_tf_function=True),
+# [rb_observer],
+max_steps: ${collect_steps_per_iteration}

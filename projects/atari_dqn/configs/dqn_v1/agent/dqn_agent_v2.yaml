@@ -1,0 +1,15 @@
+
+defaults:
+  - q_network: q_network_v1
+
+_target_: tf_agents.agents.dqn.dqn_agent.DqnAgent
+_partial_: True
+optimizer:
+  _target_: tensorflow.keras.optimizers.Adam
+  learning_rate: 0.00001
+td_errors_loss_fn:
+  _partial_: True
+  _target_: tf_agents.utils.common.element_wise_squared_loss
+train_step_counter:
+  _target_ : tensorflow.Variable
+  _args_: [0]

@@ -1,0 +1,6 @@
+
+_target_: tf_agents.replay_buffers.reverb_utils.ReverbAddTrajectoryObserver
+_partial_: True
+# py_client: replay_buffer.py_client
+table_name: ${reverb_server.tables.0.name}
+sequence_length: ${experience_replay_buffer.sequence_length}

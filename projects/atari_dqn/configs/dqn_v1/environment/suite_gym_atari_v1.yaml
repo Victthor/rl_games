@@ -1,0 +1,7 @@
+
+_target_: algo_infra.factories.tf_py_environment_factory.tf_py_env_factory
+
+params:
+  _target_: tf_agents.environments.suite_gym.load
+  _args_:
+    - ALE/Phoenix-v5  # ALE/Breakout-v5

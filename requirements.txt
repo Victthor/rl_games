@@ -8,3 +8,4 @@ optuna
 plotly
 pyglet
 pygame
+scikit-image

@@ -1,5 +1,18 @@
 
 defaults:
-  - agent: dqn_agent_v1
+  - agent: dqn_agent_v2
   - logger: wb_logger_v1
+  - environment: suite_gym_mod_atari_v1
+  # - environment: suite_gym_atari_v1
+  - reverb_server: reverb_server_v1
+  - experience_replay_buffer: reverb_buffer_v1
+  - experience_observer: reverb_observer_v1
+  - drivers/initial_collect_driver: driver_v1
+  - drivers/collect_driver: driver_v1
+  - experience_dataset: dataset_v1
 
+
+
+initial_collect_steps: 1000
+collect_steps_per_iteration: 100
+num_iterations: 1000

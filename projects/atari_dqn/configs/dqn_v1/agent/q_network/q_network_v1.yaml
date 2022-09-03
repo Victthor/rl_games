@@ -1,0 +1,10 @@
+
+_target_: algo_infra.factories.model_factory.model_factory
+
+model_wrapper:
+  _target_: projects.atari_dqn.models.model_v2.ModelWrapper
+  num_actions: 4
+  fc_layer_params:
+    - 10
+    - 15
+    - 20

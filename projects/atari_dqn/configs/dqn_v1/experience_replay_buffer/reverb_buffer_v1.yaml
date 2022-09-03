@@ -1,0 +1,7 @@
+
+_target_: tf_agents.replay_buffers.reverb_replay_buffer.ReverbReplayBuffer
+_partial_: True
+# agent.collect_data_spec,
+table_name: ${reverb_server.tables.0.name}
+sequence_length: 2
+# local_server: self.reverb_server

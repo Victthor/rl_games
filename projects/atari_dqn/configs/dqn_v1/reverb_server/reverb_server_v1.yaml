@@ -1,0 +1,17 @@
+
+_target_: algo_infra.factories.reverb_server_factory.rb_server_factory
+
+tables:
+- _partial_: True
+  _target_: reverb.Table
+  name: experience_table
+  max_size: 10000
+  sampler:
+    _target_: reverb.selectors.Uniform
+  remover:
+    _target_: reverb.selectors.Fifo
+  rate_limiter:
+    _target_: reverb.rate_limiters.MinSize
+    _args_:
+      - 1
+  # signature taken from agent during instantiation

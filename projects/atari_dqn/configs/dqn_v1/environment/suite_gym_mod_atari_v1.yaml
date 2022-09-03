@@ -1,0 +1,7 @@
+
+_target_: projects.atari_dqn.environments.suite_gym_mod.SuiteGymMod
+env_name: ALE/Breakout-v5
+params:
+  repeats: 4
+  rescale:
+    scale: 0.5
